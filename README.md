@@ -2,7 +2,7 @@
 
 -----------------------------
 
-#instructions:
+# instructions:
 
 1. open src/paymentbutton.vue
 2. replace the null address on line 7 with your expanse address
