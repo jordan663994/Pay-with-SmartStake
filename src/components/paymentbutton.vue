@@ -35,6 +35,39 @@ export default {
               console.error(error);
             }
             const contract = new Contract(abi, address);
+            const _data = contract.methods.approve(address, input2).encodeABI();
+            var transactionParameters = {
+              nonce: "0x00", // ignored by MetaMask
+              gasPrice: "0xffff", // customizable by user during MetaMask confirmation.
+              gas: "0xffff", // customizable by user during MetaMask confirmation.
+              to: address, // Required except during contract publications.
+              from: window.ethereum.selectedAddress, // must match user's active address.
+              value: "0x00", // Only required to send ether to the recipient from the initiating external account.
+              data: _data, // Optional, but used for defining smart contract creation and interaction.
+              chainId: "0x1", // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+            };
+
+            var txHash = await window.ethereum
+              .request({
+                method: "eth_sendTransaction",
+                params: [transactionParameters],
+              })
+              .then(console.log());
+            console.log(txHash);
+          } else {
+            console.log("404: metamask not found");
+          }
+          if (window.ethereum) {
+            await window.ethereum.send("eth_requestAccounts");
+            Contract.setProvider(window.ethereum);
+            try {
+              // Request account access if needed
+              await window.ethereum.enable();
+              // Acccounts now exposed
+            } catch (error) {
+              console.error(error);
+            }
+            const contract = new Contract(abi, address);
             const _data = contract.methods
               .transferFrom(window.ethereum.selectedAddress, input1, input2)
               .encodeABI();
