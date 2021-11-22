@@ -12,3 +12,13 @@
 # what you will get:
 
  you will get a page that must be used within a subdomain, that will execute the function of your chosing oppon the payment of SST to your desired address
+ 
+# building
+
+``` shell
+yarn install
+```
+``` shell
+yarn build
+```
+
