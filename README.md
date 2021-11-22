@@ -16,11 +16,12 @@
 # building
 
 run this on the directory containing the project:
-
-1. ``` shell
+1.
+ ``` shell
 yarn install
 ```
-2.``` shell
+2.
+``` shell
 yarn build
 ```
 
