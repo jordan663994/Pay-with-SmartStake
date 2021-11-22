@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import trade from "./components/HelloWorld";
+import trade from "./components/paymentbutton";
 
 export default {
   name: "App",
